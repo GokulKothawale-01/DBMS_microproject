@@ -1,0 +1,88 @@
+:root {
+    --theme-toggle-bg: #f1f5f9;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --ink: #e5edf7;
+    --muted: #a8b6ca;
+    --line: #34455e;
+    --surface: #1a2940;
+    --canvas: #101a2b;
+    --navy: #f1f5fb;
+    --blue: #8ab4ff;
+    --blue-dark: #a8c6ff;
+    --shadow: 0 12px 34px rgba(0, 0, 0, .18);
+    --theme-toggle-bg: #263850;
+}
+
+html[data-theme="dark"] body { background: var(--canvas); color: var(--ink); }
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .stat { background: var(--surface); border-color: var(--line); }
+html[data-theme="dark"] .stat::after { border-color: #263750; }
+html[data-theme="dark"] .panel-heading,
+html[data-theme="dark"] .toolbar,
+html[data-theme="dark"] .table-foot,
+html[data-theme="dark"] .evidence-foot { border-color: var(--line); }
+html[data-theme="dark"] .field label,
+html[data-theme="dark"] label,
+html[data-theme="dark"] .search-field label,
+html[data-theme="dark"] .report-text { color: #d6e0ee; }
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] .filter-control { color: var(--ink); background: #132137; border-color: #43556f; }
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #8798b0; }
+html[data-theme="dark"] th { color: #a8b6ca; background: #192940; border-color: var(--line); }
+html[data-theme="dark"] td,
+html[data-theme="dark"] .report-card { color: #c3cfdf; border-color: #2a3b53; }
+html[data-theme="dark"] tbody tr:hover { background: #202f46; }
+html[data-theme="dark"] .count-chip { color: #c3cfdf; background: #263750; }
+html[data-theme="dark"] .top-meta a,
+html[data-theme="dark"] .top-nav a,
+html[data-theme="dark"] nav a { color: #bdc9d9; }
+html[data-theme="dark"] .top-meta a:hover,
+html[data-theme="dark"] .top-meta a.active,
+html[data-theme="dark"] .top-nav a:hover,
+html[data-theme="dark"] .top-nav a.active,
+html[data-theme="dark"] nav a:hover,
+html[data-theme="dark"] nav a.active { color: #a8c6ff; background: #263750; }
+html[data-theme="dark"] .refresh-button { color: #d6e0ee; background: #1a2940; border-color: var(--line); }
+html[data-theme="dark"] .refresh-button:hover { background: #263750; }
+html[data-theme="dark"] .case-action { color: #a8c6ff; background: #20334d; border-color: #486185; }
+html[data-theme="dark"] .case-action:hover { background: #2b4363; }
+html[data-theme="dark"] .case-action:disabled { color: #bac5d5; background: #303d50; border-color: #3d4c61; }
+html[data-theme="dark"] .delete-report { color: #ffb8c0; background: #3a2633; border-color: #75414d; }
+html[data-theme="dark"] .delete-report:hover { background: #4a2d3b; }
+html[data-theme="dark"] .severity-low { color: #87e0c5; background: #173d3a; }
+html[data-theme="dark"] .severity-medium { color: #f4d17d; background: #46391e; }
+html[data-theme="dark"] .severity-high { color: #ffbd8c; background: #4b3022; }
+html[data-theme="dark"] .severity-critical { color: #ffabb4; background: #482833; }
+html[data-theme="dark"] .status-open { color: #a8c6ff; background: #23395a; }
+html[data-theme="dark"] .status-investigation { color: #d0b8ff; background: #382d53; }
+html[data-theme="dark"] .status-closed { color: #bdc9d9; background: #303d50; }
+html[data-theme="dark"] .empty-state,
+html[data-theme="dark"] .evidence-empty,
+html[data-theme="dark"] .empty { color: var(--muted); }
+
+.theme-toggle {
+    padding: 7px 10px;
+    color: var(--ink);
+    background: var(--theme-toggle-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.theme-toggle:hover { border-color: var(--blue); }
+.topbar nav, .topbar .top-meta { flex-wrap: wrap; justify-content: flex-end; }
+html[data-theme="dark"] .brand-mark { color: #9de7dc; background: #0d1a2c; }
+html[data-theme="dark"] .primary,
+html[data-theme="dark"] .primary-button { color: #fff; background: #346bc5; }
+html[data-theme="dark"] .primary:hover,
+html[data-theme="dark"] .primary-button:hover { background: #28589f; }

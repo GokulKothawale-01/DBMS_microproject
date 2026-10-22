@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f7fb">
+    <title>Home | Incident Nexus</title>
+    <style>
+        :root { color-scheme:light; --ink:#172238; --muted:#718096; --line:#e4eaf1; --surface:#fff; --canvas:#f4f7fb; --navy:#15243a; --blue:#2563eb; --shadow:0 12px 34px rgba(29,48,77,.06); }
+        * { box-sizing:border-box; } body { margin:0; background:var(--canvas); color:var(--ink); font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+        .topbar { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 clamp(20px,5vw,72px); background:var(--surface); border-bottom:1px solid var(--line); }
+        .brand { display:flex; align-items:center; gap:12px; color:var(--navy); font-size:15px; font-weight:750; } .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; color:#fff; background:#176b78; } .brand-mark svg { width:23px; height:23px; }
+        nav { display:flex; align-items:center; gap:5px; } nav a { padding:8px 10px; color:#64748b; border-radius:7px; text-decoration:none; font-size:13px; font-weight:650; } nav a:hover,nav a.active { color:var(--blue); background:#eff5ff; }
+        main { width:min(1160px,calc(100% - 40px)); margin:0 auto; padding:48px 0 60px; }
+        .hero { position:relative; overflow:hidden; padding:clamp(30px,6vw,62px); color:#fff; background:linear-gradient(125deg,#14253c 0%,#17485a 58%,#167c82 100%); border-radius:20px; box-shadow:var(--shadow); }
+        .hero::after { position:absolute; top:-100px; right:-65px; width:360px; height:360px; border:1px solid rgba(255,255,255,.14); border-radius:50%; box-shadow:0 0 0 42px rgba(255,255,255,.035),0 0 0 86px rgba(255,255,255,.025); content:""; }
+        .hero-content { position:relative; z-index:1; max-width:670px; } .eyebrow { margin:0 0 12px; color:#9ee7da; font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+        h1 { margin:0; font-size:clamp(32px,5vw,50px); line-height:1.08; letter-spacing:-.045em; } .hero p:not(.eyebrow) { max-width:570px; margin:16px 0 24px; color:#d1e2ea; font-size:16px; }
+        .hero-link { display:inline-flex; align-items:center; gap:9px; padding:11px 16px; color:#143047; background:#b2eee1; border-radius:9px; text-decoration:none; font-weight:750; } .hero-link:hover { background:#d2f7ef; }
+        .summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; margin:22px 0 34px; } .summary-card { padding:18px 20px; background:var(--surface); border:1px solid var(--line); border-radius:13px; box-shadow:var(--shadow); } .summary-label { color:var(--muted); font-size:12px; font-weight:650; } .summary-value { display:block; margin-top:4px; color:var(--navy); font-size:27px; font-weight:750; letter-spacing:-.03em; }
+        .section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin:0 0 14px; } .section-head h2 { margin:0; color:var(--navy); font-size:19px; letter-spacing:-.025em; } .section-head p { margin:0; color:var(--muted); font-size:13px; }
+        .modules { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; } .module { min-height:160px; display:flex; flex-direction:column; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:13px; text-decoration:none; box-shadow:var(--shadow); transition:transform .15s,border-color .15s; } .module:hover { transform:translateY(-2px); border-color:#adc4e8; }
+        .module-icon { width:37px; height:37px; display:grid; place-items:center; margin-bottom:14px; color:#176b78; background:#e5f5f2; border-radius:10px; font-size:17px; font-weight:800; } .module h3 { margin:0; color:var(--navy); font-size:14px; } .module p { margin:5px 0 0; color:var(--muted); font-size:12px; }
+        @media(max-width:900px) { .modules { grid-template-columns:repeat(2,minmax(0,1fr)); } } @media(max-width:600px) { .topbar { min-height:60px; flex-wrap:wrap; gap:4px; padding:8px 12px; } .brand { gap:8px; font-size:13px; } .brand-mark { width:33px; height:33px; } nav { gap:0; flex-wrap:wrap; } nav a { padding:6px; font-size:10px; } main { width:min(100% - 28px,1160px); padding-top:26px; } .hero { padding:28px 23px; border-radius:15px; } .hero p:not(.eyebrow) { font-size:14px; } .summary { gap:8px; margin:14px 0 28px; } .summary-card { padding:13px 11px; } .summary-label { font-size:10px; } .summary-value { font-size:22px; } .section-head { display:block; } .section-head p { margin-top:4px; } .modules { gap:9px; } .module { min-height:150px; padding:14px; } }
+        @media(max-width:370px) { .modules { grid-template-columns:1fr; } .module { min-height:0; } }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="m14 2.8 9 5.2v10.3L14 23.5l-9-5.2V8l9-5.2Z" stroke="currentColor" stroke-width="1.7"/><circle cx="14" cy="13.2" r="2.3" fill="currentColor"/><circle cx="8.2" cy="9.6" r="1.35" fill="currentColor"/><circle cx="19.8" cy="9.6" r="1.35" fill="currentColor"/><circle cx="14" cy="19.7" r="1.35" fill="currentColor"/><path d="m12.1 11.9-2.8-1.7m6.6 1.7 2.8-1.7m-4.7 5.3v2.1" stroke="currentColor" stroke-width="1.4"/></svg></span><span>Incident Nexus</span></div>
+        <nav aria-label="Main navigation"><a class="active" href="/">Home</a><a href="/incidents">Incidents</a><a href="/evidence">Evidence</a><a href="/investigators">Investigators</a><a href="/reports">Reports</a><button class="theme-toggle" type="button" data-theme-toggle>Dark mode</button></nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content"><p class="eyebrow">Cybercrime operations</p><h1>Casework, connected.</h1><p>A single workspace for incident response, evidence handling, investigator records, and case reports.</p><a class="hero-link" href="/incidents">Open incident desk <span aria-hidden="true">→</span></a></div>
+        </section>
+        <section class="summary" aria-label="Current workload">
+            <article class="summary-card"><span class="summary-label">Reported cases</span><strong class="summary-value" id="caseCount">—</strong></article>
+            <article class="summary-card"><span class="summary-label">Open cases</span><strong class="summary-value" id="openCount">—</strong></article>
+            <article class="summary-card"><span class="summary-label">Evidence records</span><strong class="summary-value" id="evidenceCount">—</strong></article>
+        </section>
+        <section aria-labelledby="modules-title">
+            <div class="section-head"><h2 id="modules-title">Workspace</h2><p>Choose an area to continue.</p></div>
+            <div class="modules">
+                <a class="module" href="/incidents"><span class="module-icon" aria-hidden="true">01</span><h3>Incidents</h3><p>Register, search, review, and close cases.</p></a>
+                <a class="module" href="/evidence"><span class="module-icon" aria-hidden="true">02</span><h3>Evidence</h3><p>Link evidence records and uploaded files to cases.</p></a>
+                <a class="module" href="/investigators"><span class="module-icon" aria-hidden="true">03</span><h3>Investigators</h3><p>Maintain the investigator directory.</p></a>
+                <a class="module" href="/reports"><span class="module-icon" aria-hidden="true">04</span><h3>Reports</h3><p>Create and review case reports.</p></a>
+            </div>
+        </section>
+    </main>
+    <script>
+        async function loadSummary() {
+            try {
+                const [incidentsResponse, evidenceResponse] = await Promise.all([fetch('/api/incidents'), fetch('/api/evidence')]);
+                const incidents = await incidentsResponse.json(); const evidence = await evidenceResponse.json();
+                if (!incidentsResponse.ok || !Array.isArray(incidents) || !evidenceResponse.ok || !Array.isArray(evidence)) return;
+                document.getElementById('caseCount').textContent = incidents.length;
+                document.getElementById('openCount').textContent = incidents.filter(item => !['closed', 'resolved'].includes(String(item.status).toLowerCase())).length;
+                document.getElementById('evidenceCount').textContent = evidence.length;
+            } catch (_) { /* Keep the workspace links available if database summaries are unavailable. */ }
+        }
+        loadSummary();
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f7fb">
+    <title>Investigators | Incident Nexus</title>
+    <style>
+        :root { color-scheme: light; --ink:#172238; --muted:#718096; --line:#e4eaf1; --surface:#fff; --canvas:#f4f7fb; --navy:#15243a; --blue:#2563eb; --blue-dark:#1d4ed8; --shadow:0 12px 34px rgba(29,48,77,.06); }
+        * { box-sizing:border-box; } body { margin:0; background:var(--canvas); color:var(--ink); font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; } button,input { font:inherit; }
+        .topbar { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 clamp(20px,5vw,72px); background:var(--surface); border-bottom:1px solid var(--line); }
+        .brand { display:flex; align-items:center; gap:12px; color:var(--navy); font-size:15px; font-weight:750; } .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; color:#fff; background:var(--navy); } .brand-mark svg { width:21px; height:21px; }
+        nav { display:flex; gap:5px; } nav a { padding:8px 10px; color:#64748b; border-radius:7px; text-decoration:none; font-size:13px; font-weight:650; } nav a:hover,nav a.active { color:var(--blue); background:#eff5ff; }
+        main { width:min(1120px,calc(100% - 40px)); margin:0 auto; padding:38px 0 56px; } .heading { margin-bottom:25px; } .eyebrow { margin:0 0 7px; color:var(--blue); font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; } h1 { margin:0; color:var(--navy); font-size:clamp(27px,4vw,36px); line-height:1.15; letter-spacing:-.045em; } .subtitle { margin:9px 0 0; color:var(--muted); }
+        .layout { display:grid; grid-template-columns:minmax(260px,.7fr) minmax(0,1.6fr); align-items:start; gap:20px; } .panel { min-width:0; overflow:hidden; background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); } .panel-heading { padding:20px 22px 17px; border-bottom:1px solid var(--line); } .panel-heading h2 { margin:0; color:var(--navy); font-size:16px; } .panel-heading p { margin:4px 0 0; color:var(--muted); font-size:13px; }
+        .form-body { padding:19px 22px 22px; } .field { margin-bottom:15px; } label { display:block; margin-bottom:6px; color:#34445a; font-size:12px; font-weight:700; } input { width:100%; min-height:41px; padding:9px 11px; color:var(--ink); border:1px solid #dce4ee; border-radius:8px; outline:none; } input:focus { border-color:#7da6fa; box-shadow:0 0 0 3px rgba(37,99,235,.11); }
+        .primary { width:100%; min-height:43px; padding:10px 14px; color:#fff; background:var(--blue); border:0; border-radius:8px; font-weight:700; cursor:pointer; } .primary:hover { background:var(--blue-dark); } .primary:disabled { cursor:wait; opacity:.7; } .message { margin:12px 0 0; font-size:13px; } .message:empty { display:none; } .success { color:#087a65; } .error { color:#c2413b; }
+        .list-tools { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); } .list-tools input { max-width:310px; min-height:38px; font-size:13px; } .count { color:#52647c; font-size:12px; font-weight:700; }
+        .table-wrap { overflow-x:auto; } table { width:100%; border-collapse:collapse; text-align:left; } th { padding:11px 16px; color:#7a899d; background:#fbfcfe; border-bottom:1px solid var(--line); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; } td { padding:14px 16px; color:#526176; border-bottom:1px solid #edf1f5; font-size:13px; } tbody tr:last-child td { border-bottom:0; } .strong { color:var(--navy); font-weight:750; white-space:nowrap; } .empty { padding:32px 16px; color:var(--muted); text-align:center; }
+        @media(max-width:850px) { .layout { grid-template-columns:1fr; } } @media(max-width:600px) { .topbar { min-height:60px; flex-wrap:wrap; gap:4px; padding:8px 12px; } .brand { gap:8px; font-size:13px; } .brand-mark { width:33px; height:33px; } nav { gap:0; } nav a { padding:6px; font-size:10px; } main { width:min(100% - 28px,1120px); padding-top:27px; } .panel-heading,.form-body { padding-left:16px; padding-right:16px; } .list-tools { padding:12px; } th,td { padding-left:11px; padding-right:11px; } }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="m14 2.8 9 5.2v10.3L14 23.5l-9-5.2V8l9-5.2Z" stroke="currentColor" stroke-width="1.7"/><circle cx="14" cy="13.2" r="2.3" fill="currentColor"/><circle cx="8.2" cy="9.6" r="1.35" fill="currentColor"/><circle cx="19.8" cy="9.6" r="1.35" fill="currentColor"/><circle cx="14" cy="19.7" r="1.35" fill="currentColor"/><path d="m12.1 11.9-2.8-1.7m6.6 1.7 2.8-1.7m-4.7 5.3v2.1" stroke="currentColor" stroke-width="1.4"/></svg></span><span>Incident Nexus</span></div>
+        <nav aria-label="Main navigation"><a href="/">Home</a><a href="/incidents">Incidents</a><a href="/evidence">Evidence</a><a class="active" href="/investigators">Investigators</a><a href="/reports">Reports</a><button class="theme-toggle" type="button" data-theme-toggle>Dark mode</button></nav>
+    </header>
+    <main>
+        <section class="heading"><p class="eyebrow">People directory</p><h1>Investigators</h1><p class="subtitle">Maintain the investigator directory used by the case team.</p></section>
+        <div class="layout">
+            <section class="panel" aria-labelledby="add-title">
+                <div class="panel-heading"><h2 id="add-title">Add investigator</h2><p>Register a team member in the directory.</p></div>
+                <form class="form-body" id="investigatorForm">
+                    <div class="field"><label for="investigator_id">Investigator ID</label><input id="investigator_id" name="investigator_id" placeholder="e.g. INV-103" required></div>
+                    <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div>
+                    <div class="field"><label for="contact">Contact</label><input id="contact" name="contact" placeholder="Email or phone" required></div>
+                    <button class="primary" id="submitButton" type="submit">Add investigator</button>
+                    <p class="message" id="formMessage" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+            <section class="panel" aria-labelledby="directory-title">
+                <div class="panel-heading"><h2 id="directory-title">Team directory</h2><p>Investigator IDs can be assigned to incidents.</p></div>
+                <div class="list-tools"><input id="search" type="search" placeholder="Search investigators..." aria-label="Search investigators"><span class="count" id="count">0 investigators</span></div>
+                <div class="table-wrap"><table><thead><tr><th scope="col">Investigator ID</th><th scope="col">Name</th><th scope="col">Contact</th></tr></thead><tbody id="tableBody"><tr><td class="empty" colspan="3">Loading investigators...</td></tr></tbody></table></div>
+            </section>
+        </div>
+    </main>
+    <script>
+        const records = [];
+        const body = document.getElementById('tableBody');
+        function render() {
+            const term = document.getElementById('search').value.trim().toLowerCase();
+            const matches = records.filter(person => [person.investigator_id, person.name, person.contact].join(' ').toLowerCase().includes(term));
+            document.getElementById('count').textContent = `${matches.length} ${matches.length === 1 ? 'investigator' : 'investigators'}`;
+            body.replaceChildren();
+            if (!matches.length) {
+                const row = document.createElement('tr'); const cell = document.createElement('td');
+                cell.colSpan = 3; cell.className = 'empty'; cell.textContent = records.length ? 'No matching investigators.' : 'No investigators registered yet.'; row.append(cell); body.append(row); return;
+            }
+            matches.forEach(person => { const row = document.createElement('tr'); [person.investigator_id, person.name, person.contact].forEach((value, index) => { const cell = document.createElement('td'); cell.textContent = value || ''; if (index === 0) cell.className = 'strong'; row.append(cell); }); body.append(row); });
+        }
+        async function load() {
+            try { const response = await fetch('/api/investigators'); const data = await response.json(); if (!response.ok || !Array.isArray(data)) throw new Error(data.error || 'Unable to load investigators.'); records.splice(0, records.length, ...data); render(); }
+            catch (error) { body.replaceChildren(); const row = document.createElement('tr'); const cell = document.createElement('td'); cell.colSpan = 3; cell.className = 'empty'; cell.textContent = error.message; row.append(cell); body.append(row); }
+        }
+        document.getElementById('search').addEventListener('input', render);
+        document.getElementById('investigatorForm').addEventListener('submit', async event => {
+            event.preventDefault(); const form = event.currentTarget; const button = document.getElementById('submitButton'); const message = document.getElementById('formMessage'); button.disabled = true; button.textContent = 'Adding...'; message.textContent = ''; message.className = 'message';
+            try { const payload = Object.fromEntries(new FormData(form).entries()); const response = await fetch('/api/investigators', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }); const result = await response.json(); if (!response.ok) throw new Error(result.error || 'Unable to add investigator.'); form.reset(); message.textContent = result.message; message.classList.add('success'); await load(); }
+            catch (error) { message.textContent = error.message; message.classList.add('error'); } finally { button.disabled = false; button.textContent = 'Add investigator'; }
+        });
+        load();
+    </script>
+</body>
+</html>
